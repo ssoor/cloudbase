@@ -1,0 +1,56 @@
+{
+    "version": "2.0",
+    "envId": "{{env.ENV_ID}}",
+    "framework": {
+        "name": "miniflux",
+        "plugins": {
+            "client": {
+                "use": "@cloudbase/framework-plugin-container",
+                "inputs": {
+                    "isPublic": false,
+                    "serviceName": "miniflux",
+                    "servicePath": "/",
+                    "localPath": "./",
+                    "uploadType": "image",
+                    "containerPort": 80,
+                    "imageInfo": {
+                        "imageUrl": "freshrss/freshrss:1.17.0"
+                    },
+                    "envVariables": {
+                        "DB_TYPE": "mysql",
+                        "DB_NAME": "miniflux",
+                        "DB_HOST": "{{env.DB_HOST}}:{{env.DB_PORT}}",
+                        "DB_USER": "{{env.DB_USER}}",
+                        "DB_PASS": "{{env.DB_PASS}}"
+                    },
+                    "volumeMounts": {
+                        "/var/www/FreshRSS/data": "miniflux.data-cfs",
+                        "/var/www/FreshRSS/extensions": "miniflux.exts-cfs"
+                    }
+                }
+            }
+        },
+        "requirement": {
+            "addons": [
+                {
+                    "type": "CFS",
+                    "name": "miniflux.data-cfs"
+                },
+                {
+                    "type": "CFS",
+                    "name": "miniflux.exts-cfs"
+                },
+                {
+                    "type": "CynosDB",
+                    "name": "miniflux",
+                    "envMap": {
+                        "IP": "DB_HOST",
+                        "PORT": "DB_PORT",
+                        "USERNAME": "DB_USER",
+                        "PASSWORD": "DB_PASS"
+                    }
+                }
+            ]
+        }
+    }
+}
