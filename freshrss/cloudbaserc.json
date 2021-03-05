@@ -1,0 +1,54 @@
+{
+    "version": "2.0",
+    "envId": "{{env.ENV_ID}}",
+    "framework": {
+        "name": "freshrss",
+        "plugins": {
+            "client": {
+                "use": "@cloudbase/framework-plugin-container",
+                "inputs": {
+                    "serviceName": "freshrss",
+                    "servicePath": "/freshrss",
+                    "uploadType": "image",
+                    "containerPort": 80,
+                    "imageInfo": {
+                        "imageUrl": "freshrss/freshrss:1.17.0"
+                    },
+                    "envVariables": {
+                        "DB_TYPE": "mysql",
+                        "DB_NAME": "freshrss",
+                        "DB_HOST": "{{env.DB_HOST}}:{{env.DB_PORT}}",
+                        "DB_USER": "{{env.DB_USER}}",
+                        "DB_PASS": "{{env.DB_PASS}}"
+                    },
+                    "volumeMounts": {
+                        "/var/www/FreshRSS/data": "freshrss.data-cfs",
+                        "/var/www/FreshRSS/extensions": "freshrss.exts-cfs"
+                    }
+                }
+            }
+        },
+        "requirement": {
+            "addons": [
+                {
+                    "type": "CFS",
+                    "name": "freshrss.data-cfs"
+                },
+                {
+                    "type": "CFS",
+                    "name": "freshrss.exts-cfs"
+                },
+                {
+                    "type": "CynosDB",
+                    "name": "freshrss",
+                    "envMap": {
+                        "IP": "DB_HOST",
+                        "PORT": "DB_PORT",
+                        "USERNAME": "DB_USER",
+                        "PASSWORD": "DB_PASS"
+                    }
+                }
+            ]
+        }
+    }
+}
