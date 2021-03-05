@@ -1,0 +1,23 @@
+{
+  "version": "2.0",
+  "envId": "{{env.ENV_ID}}",
+  "framework": {
+    "name": "unlock-music",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-container",
+        "inputs": {
+          "mode": "low-cost",
+          "serviceName": "unlock-music",
+          "servicePath": "/unlock-music",
+          "uploadType": "image",
+          "containerPort": 80,
+          "imageInfo": {
+            "imageUrl": "ix64/unlock-music"
+          },
+          "envVariables": {}
+        }
+      }
+    }
+  }
+}
