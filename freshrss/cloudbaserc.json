@@ -22,8 +22,8 @@
                         "DB_PASS": "{{env.DB_PASS}}"
                     },
                     "volumeMounts": {
-                        "/var/www/FreshRSS/data": "freshrss.data-cfs",
-                        "/var/www/FreshRSS/extensions": "freshrss.exts-cfs"
+                        "/var/www/FreshRSS/data": "freshrss-data-cfs",
+                        "/var/www/FreshRSS/extensions": "freshrss-exts-cfs"
                     }
                 }
             }
@@ -32,11 +32,11 @@
             "addons": [
                 {
                     "type": "CFS",
-                    "name": "freshrss.data-cfs"
+                    "name": "freshrss-data-cfs"
                 },
                 {
                     "type": "CFS",
-                    "name": "freshrss.exts-cfs"
+                    "name": "freshrss-exts-cfs"
                 },
                 {
                     "type": "CynosDB",
