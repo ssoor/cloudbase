@@ -16,18 +16,35 @@
                         "imageUrl": "miniflux/miniflux:2.0.28"
                     },
                     "envVariables": {
-                        "DATABASE_URL": "{{env.DATABASE_URL}}",
+                        "DATABASE_URL": "{{env.DB_URL}}",
                         "CREATE_ADMIN": "1",
                         "RUN_MIGRATIONS": "1",
-                        "ADMIN_USERNAME": "core",
-                        "ADMIN_PASSWORD": "Core.123"
+                        "ADMIN_USERNAME": "{{env.ADMIN_USERNAME}}",
+                        "ADMIN_PASSWORD": "{{env.ADMIN_PASSWORD}}"
                     },
                     "volumeMounts": {}
                 }
             }
         },
         "requirement": {
-            "addons": []
+            "addons": [],
+            "environment": {
+                "DB_URL": {
+                    "description": "数据库连接URL",
+                    "required": true,
+                    "default":"postgres://user:passwd@host/dbname?sslmode=disable"
+                },
+                "ADMIN_USERNAME": {
+                    "description": "后台管理员用户名",
+                    "required": true,
+                    "default":"admin"
+                },
+                "ADMIN_PASSWORD": {
+                    "description": "后台管理员密码",
+                    "required": true,
+                    "default":"admin"
+                }
+            }
         }
     }
 }

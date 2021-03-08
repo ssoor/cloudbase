@@ -32,30 +32,30 @@
                 "type": "CFS",
                 "name": "fabu"
               }
-            ]
-        },
-        "environment": {
-            "PUBLIC_URL": {
-                "description": "访问地址",
-                "required": true,
-                "default": "https://fabu.coocn.cn"
-            },
-            "DB_HOST": {
-                "description": "Mongodb 数据库地址",
-                "required": true
-            },
-            "DB_PORT": {
-                "description": "Mongodb 数据库端口",
-                "required": true,
-                "default": "27017"
-            },
-            "DB_USER": {
-                "description": "Mongodb 访问用户",
-                "required": false
-            },
-            "DB_PASSWD": {
-                "description": "Mongodb 访问密码",
-                "required": false
+            ],
+            "environment": {
+                "PUBLIC_URL": {
+                    "description": "访问地址",
+                    "required": true,
+                    "default": "https://fabu.coocn.cn"
+                },
+                "DB_HOST": {
+                    "description": "Mongodb 数据库地址",
+                    "required": true
+                },
+                "DB_PORT": {
+                    "description": "Mongodb 数据库端口",
+                    "required": true,
+                    "default": "27017"
+                },
+                "DB_USER": {
+                    "description": "Mongodb 访问用户",
+                    "required": false
+                },
+                "DB_PASSWD": {
+                    "description": "Mongodb 访问密码",
+                    "required": false
+                }
             }
         }
     }
