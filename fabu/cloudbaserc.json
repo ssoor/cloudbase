@@ -1,0 +1,62 @@
+{
+    "version": "2.0",
+    "envId": "{{env.ENV_ID}}",
+    "framework": {
+        "name": "fabu",
+        "plugins": {
+            "client": {
+                "use": "@cloudbase/framework-plugin-container",
+                "inputs": {
+                    "isPublic": true,
+                    "serviceName": "fabu",
+                    "servicePath": "/fabu",
+                    "uploadType": "package",
+                    "containerPort": 9898,
+                    "envVariables": {
+                        "FABU_DBUSER": "{{env.DB_USER}}",
+                        "FABU_DBPWD": "{{env.DB_PASSWD}}",
+                        "FABU_DB_HOST": "{{env.DB_HOST}}",
+                        "FABU_DB_PORT": "{{env.DB_PORT}}",
+                        "FABU_BASE_URL": "{{env.PUBLIC_URL}}",
+                        "FABU_UPLOAD_DIR": "/fabu/upload"
+                    },
+                    "volumeMounts": {
+                        "/fabu/upload":"fabu"
+                    }
+                }
+            }
+        },
+        "requirement": {
+            "addons": [
+              {
+                "type": "CFS",
+                "name": "fabu"
+              }
+            ]
+        },
+        "environment": {
+            "PUBLIC_URL": {
+                "description": "访问地址",
+                "required": true,
+                "default": "https://fabu.coocn.cn"
+            },
+            "DB_HOST": {
+                "description": "Mongodb 数据库地址",
+                "required": true
+            },
+            "DB_PORT": {
+                "description": "Mongodb 数据库端口",
+                "required": true,
+                "default": "27017"
+            },
+            "DB_USER": {
+                "description": "Mongodb 访问用户",
+                "required": false
+            },
+            "DB_PASSWD": {
+                "description": "Mongodb 访问密码",
+                "required": false
+            }
+        }
+    }
+}
