@@ -7,50 +7,27 @@
             "client": {
                 "use": "@cloudbase/framework-plugin-container",
                 "inputs": {
-                    "isPublic": false,
+                    "isPublic": true,
                     "serviceName": "miniflux",
-                    "servicePath": "/",
-                    "localPath": "./",
+                    "servicePath": "/miniflux",
                     "uploadType": "image",
-                    "containerPort": 80,
+                    "containerPort": 8080,
                     "imageInfo": {
-                        "imageUrl": "freshrss/freshrss:1.17.0"
+                        "imageUrl": "miniflux/miniflux:2.0.28"
                     },
                     "envVariables": {
-                        "DB_TYPE": "mysql",
-                        "DB_NAME": "miniflux",
-                        "DB_HOST": "{{env.DB_HOST}}:{{env.DB_PORT}}",
-                        "DB_USER": "{{env.DB_USER}}",
-                        "DB_PASS": "{{env.DB_PASS}}"
+                        "DATABASE_URL": "{{env.DATABASE_URL}}",
+                        "CREATE_ADMIN": "1",
+                        "RUN_MIGRATIONS": "1",
+                        "ADMIN_USERNAME": "core",
+                        "ADMIN_PASSWORD": "Core.123"
                     },
-                    "volumeMounts": {
-                        "/var/www/FreshRSS/data": "miniflux.data-cfs",
-                        "/var/www/FreshRSS/extensions": "miniflux.exts-cfs"
-                    }
+                    "volumeMounts": {}
                 }
             }
         },
         "requirement": {
-            "addons": [
-                {
-                    "type": "CFS",
-                    "name": "miniflux.data-cfs"
-                },
-                {
-                    "type": "CFS",
-                    "name": "miniflux.exts-cfs"
-                },
-                {
-                    "type": "CynosDB",
-                    "name": "miniflux",
-                    "envMap": {
-                        "IP": "DB_HOST",
-                        "PORT": "DB_PORT",
-                        "USERNAME": "DB_USER",
-                        "PASSWORD": "DB_PASS"
-                    }
-                }
-            ]
+            "addons": []
         }
     }
 }
