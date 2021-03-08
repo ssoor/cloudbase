@@ -10,6 +10,7 @@
                     "isPublic": true,
                     "serviceName": "fabu",
                     "servicePath": "/fabu",
+                    "localPath": "./fabu",
                     "uploadType": "package",
                     "containerPort": 9898,
                     "envVariables": {
@@ -21,17 +22,17 @@
                         "FABU_UPLOAD_DIR": "/fabu/upload"
                     },
                     "volumeMounts": {
-                        "/fabu/upload":"fabu"
+                        "/fabu/upload": "fabu"
                     }
                 }
             }
         },
         "requirement": {
             "addons": [
-              {
-                "type": "CFS",
-                "name": "fabu"
-              }
+                {
+                    "type": "CFS",
+                    "name": "fabu"
+                }
             ],
             "environment": {
                 "PUBLIC_URL": {
